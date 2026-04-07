@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capture Gap Matrix</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.5; }
+  #chart { width: 100%; height: 600px; }
+  .annotation-box { 
+    background: #fff3f0; border-left: 3px solid #e74c3c; padding: 12px 16px; 
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #c0392b; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Capture Gap Matrix: Where Impressions Are Growing but Clicks Are Not</h1>
+  <p class="subtitle">Top 50 blog pages by Q1 2026 impression volume. Each dot is one page plotted by its Q1-over-Q4 impression change (x-axis) and click change (y-axis). Pages below the zero line with high x-values represent growing search demand that the current content is failing to convert.</p>
+  <div id="chart"></div>
+  <div class="annotation-box">
+    <strong>Key insight:</strong> Pages in the lower-right zone have the most urgent refresh need. Google is showing them to more people, but fewer are clicking. The five labeled pages (orange) each have a Gscore above 1,000,000, meaning the gap between rising impressions and falling clicks is large enough to represent a material missed opportunity.
+  </div>
+</div>
+<script>
+const labeled = [{"slug": "types-of-maintenance", "click_dif": -120, "imps_dif": 99935, "q1_imps": 243616, "gscore": 11992200}, {"slug": "jit-just-in-time-management", "click_dif": -30, "imps_dif": 60879, "q1_imps": 173546, "gscore": 1826370}, {"slug": "vibration-analysis-complete-guide", "click_dif": -123, "imps_dif": 22916, "q1_imps": 120633, "gscore": 2818668}, {"slug": "spare-parts-management", "click_dif": -47, "imps_dif": 39865, "q1_imps": 101989, "gscore": 1873655}, {"slug": "roi-and-payback-maintenance-kpis", "click_dif": -55, "imps_dif": 28482, "q1_imps": 59469, "gscore": 1566510}];
+const unlabeled = [{"slug": "root-cause-analysis-what-it-is-benefits-and-how-to-use-it", "click_dif": 41, "imps_dif": 326289, "q1_imps": 350788, "gscore": 0}, {"slug": "types-of-inventory-systems-and-management", "click_dif": 56, "imps_dif": 200019, "q1_imps": 209698, "gscore": 0}, {"slug": "what-is-asset-turnover-calculation", "click_dif": 44, "imps_dif": 90234, "q1_imps": 177049, "gscore": 0}, {"slug": "whats-abc-inventory-analysis-how-to-calculate-examples", "click_dif": 218, "imps_dif": 80026, "q1_imps": 137951, "gscore": 0}, {"slug": "best-enterprise-asset-management-software-eam", "click_dif": 6, "imps_dif": 98993, "q1_imps": 128790, "gscore": 0}, {"slug": "inventory-turnover-ratio-what-it-is-how-it-works-how-to-calculate", "click_dif": 70, "imps_dif": 68667, "q1_imps": 128170, "gscore": 0}, {"slug": "best-predictive-maintenance-software-pm", "click_dif": 20, "imps_dif": 98716, "q1_imps": 126715, "gscore": 0}, {"slug": "fifo-vs-lifo-differences-benefits-formula", "click_dif": 72, "imps_dif": 73919, "q1_imps": 123793, "gscore": 0}, {"slug": "fms-facility-management-system-what-it-is-and-key-benefits", "click_dif": 32, "imps_dif": 48016, "q1_imps": 123225, "gscore": 0}, {"slug": "standard-operating-procedure-sop-full-guide-to-apply-it", "click_dif": 226, "imps_dif": 78656, "q1_imps": 118748, "gscore": 0}, {"slug": "dfmea-vs-pfmea", "click_dif": 34, "imps_dif": 39982, "q1_imps": 113115, "gscore": 0}, {"slug": "scrap-rate-calculate-minimize", "click_dif": 47, "imps_dif": 30092, "q1_imps": 106694, "gscore": 0}, {"slug": "reduce-machine-downtime", "click_dif": 52, "imps_dif": 60272, "q1_imps": 90442, "gscore": 0}, {"slug": "best-work-order-management-software", "click_dif": 30, "imps_dif": 71687, "q1_imps": 84896, "gscore": 0}, {"slug": "whats-condition-monitoring", "click_dif": 13, "imps_dif": 11603, "q1_imps": 83202, "gscore": 0}, {"slug": "quality-management-process-principles-best-practices", "click_dif": 70, "imps_dif": 39939, "q1_imps": 78766, "gscore": 0}, {"slug": "what-is-mro-guide-to-maintenance-repair-and-operations", "click_dif": 33, "imps_dif": 42416, "q1_imps": 78277, "gscore": 0}, {"slug": "production-planning-control-ppc", "click_dif": 36, "imps_dif": 22456, "q1_imps": 76486, "gscore": 0}, {"slug": "best-spare-parts-inventory-management-software", "click_dif": 45, "imps_dif": 55446, "q1_imps": 67729, "gscore": 0}, {"slug": "what-is-predective-maintenance-benefits-importance-examples", "click_dif": -11, "imps_dif": 14624, "q1_imps": 67491, "gscore": 160864}, {"slug": "defect-density", "click_dif": 47, "imps_dif": 46223, "q1_imps": 66707, "gscore": 0}, {"slug": "economic-order-quantity-what-is-how-to-use-it-formula", "click_dif": -3, "imps_dif": 39583, "q1_imps": 66254, "gscore": 118749}, {"slug": "stock-turnover-ratio-calculation", "click_dif": 32, "imps_dif": 35971, "q1_imps": 66014, "gscore": 0}, {"slug": "first-pass-yield", "click_dif": 31, "imps_dif": 17253, "q1_imps": 64843, "gscore": 0}, {"slug": "maintenance-schedule-a-complete-guide-with-free-excel-template", "click_dif": 533, "imps_dif": 30135, "q1_imps": 61506, "gscore": 0}, {"slug": "understanding-production-costs-industry", "click_dif": 0, "imps_dif": 37966, "q1_imps": 61455, "gscore": 0}, {"slug": "top-predictive-maintenance-sensors", "click_dif": 52, "imps_dif": 52017, "q1_imps": 59927, "gscore": 0}, {"slug": "overall-equipment-effectiveness-oee", "click_dif": -8, "imps_dif": 35074, "q1_imps": 58077, "gscore": 280592}, {"slug": "esg-enviromental-social-governance", "click_dif": -3, "imps_dif": 21256, "q1_imps": 57341, "gscore": 63768}, {"slug": "energy-efficiency-industry-strategies", "click_dif": 25, "imps_dif": 31908, "q1_imps": 56903, "gscore": 0}, {"slug": "8-essential-indicators-for-maintenance-management", "click_dif": 89, "imps_dif": 14487, "q1_imps": 56490, "gscore": 0}, {"slug": "induction-motors-revolutionizing-the-industry", "click_dif": -40, "imps_dif": 21678, "q1_imps": 56320, "gscore": 867120}, {"slug": "work-order-maintenance-complete-guide", "click_dif": 14, "imps_dif": 35555, "q1_imps": 55652, "gscore": 0}, {"slug": "five-whys-analysis-complete-guide", "click_dif": 114, "imps_dif": 37502, "q1_imps": 55023, "gscore": 0}, {"slug": "rcm-one-of-the-most-profitable-maintenance-models-that-exist", "click_dif": -38, "imps_dif": 18986, "q1_imps": 54359, "gscore": 721468}, {"slug": "what-is-preventive-maintenance-ultimate-guide", "click_dif": 18, "imps_dif": 24428, "q1_imps": 54124, "gscore": 0}, {"slug": "idle-time", "click_dif": 6, "imps_dif": 26783, "q1_imps": 52969, "gscore": 0}, {"slug": "production-downtime-causes-costs-prevention-strategies", "click_dif": 9, "imps_dif": 28911, "q1_imps": 52898, "gscore": 0}, {"slug": "best-maintenance-management-software-cmms", "click_dif": 11, "imps_dif": 43620, "q1_imps": 52883, "gscore": 0}, {"slug": "bearing-failures-what-causes-them-how-to-prevent-them", "click_dif": 53, "imps_dif": 40734, "q1_imps": 52878, "gscore": 0}, {"slug": "tpm-what-is-total-productive-maintenance-and-how-to-apply-it", "click_dif": 1, "imps_dif": 23791, "q1_imps": 52435, "gscore": 0}, {"slug": "cip-cleaning-how-to-ensure-food-safety-standards", "click_dif": 26, "imps_dif": 22455, "q1_imps": 52136, "gscore": 0}, {"slug": "what-is-condition-based-maintenance-cbm", "click_dif": 61, "imps_dif": 37741, "q1_imps": 50840, "gscore": 0}, {"slug": "material-requirements-planning-how-it-works-and-benefits", "click_dif": 29, "imps_dif": 33189, "q1_imps": 49998, "gscore": 0}, {"slug": "best-manufacturing-efficiency-software", "click_dif": 16, "imps_dif": 47353, "q1_imps": 48496, "gscore": 0}];
+
+const traceUnlabeled = {
+  x: unlabeled.map(d => d.imps_dif),
+  y: unlabeled.map(d => d.click_dif),
+  mode: 'markers',
+  type: 'scatter',
+  name: 'Blog pages',
+  text: unlabeled.map(d => d.slug + '<br>Imps change: ' + d.imps_dif.toLocaleString() + '<br>Click change: ' + d.click_dif.toLocaleString() + '<br>Gscore: ' + d.gscore.toLocaleString()),
+  hoverinfo: 'text',
+  marker: {
+    size: 9,
+    color: '#4a90d9',
+    opacity: 0.55,
+    line: { width: 1, color: '#2c6fbb' }
+  }
+};
+
+const traceLabeled = {
+  x: labeled.map(d => d.imps_dif),
+  y: labeled.map(d => d.click_dif),
+  mode: 'markers+text',
+  type: 'scatter',
+  name: 'Gscore > 1M (capture gaps)',
+  text: labeled.map(d => d.slug.replace(/-/g, ' ')),
+  textposition: labeled.map(d => {
+    if (d.slug === 'types-of-maintenance') return 'top center';
+    if (d.slug === 'jit-just-in-time-management') return 'bottom left';
+    if (d.slug === 'spare-parts-management') return 'top left';
+    if (d.slug === 'vibration-analysis-complete-guide') return 'bottom right';
+    return 'top right';
+  }),
+  textfont: { size: 11, color: '#c0392b', family: 'DM Sans' },
+  hovertext: labeled.map(d => d.slug + '<br>Imps change: ' + d.imps_dif.toLocaleString() + '<br>Click change: ' + d.click_dif.toLocaleString() + '<br>Gscore: ' + d.gscore.toLocaleString()),
+  hoverinfo: 'text',
+  marker: {
+    size: 13,
+    color: '#e74c3c',
+    opacity: 0.9,
+    symbol: 'diamond',
+    line: { width: 1.5, color: '#96281b' }
+  }
+};
+
+const layout = {
+  xaxis: {
+    title: { text: 'Impression Change (Q1 2026 over Q4 2025)', font: { size: 13, family: 'DM Sans' } },
+    zeroline: true, zerolinecolor: '#999', zerolinewidth: 1,
+    gridcolor: '#e8e8e8', tickformat: ',d',
+    font: { family: 'DM Sans' }
+  },
+  yaxis: {
+    title: { text: 'Click Change (Q1 2026 over Q4 2025)', font: { size: 13, family: 'DM Sans' } },
+    zeroline: true, zerolinecolor: '#c0392b', zerolinewidth: 1.5,
+    gridcolor: '#e8e8e8', tickformat: ',d',
+    font: { family: 'DM Sans' }
+  },
+  shapes: [{
+    type: 'line', x0: 0, x1: 1, y0: 0, y1: 0,
+    xref: 'paper', yref: 'y',
+    line: { color: '#c0392b', width: 1.5, dash: 'dash' }
+  }],
+  plot_bgcolor: '#ffffff',
+  paper_bgcolor: '#fafafa',
+  margin: { l: 70, r: 40, t: 20, b: 60 },
+  legend: {
+    x: 0.01, y: 0.99, bgcolor: 'rgba(255,255,255,0.85)',
+    bordercolor: '#ddd', borderwidth: 1,
+    font: { size: 12, family: 'DM Sans' }
+  },
+  font: { family: 'DM Sans' },
+  hovermode: 'closest'
+};
+
+Plotly.newPlot('chart', [traceUnlabeled, traceLabeled], layout, {responsive: true, displayModeBar: false});
+</script>
+</body>
+</html>
