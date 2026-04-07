@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funnel Distribution by Tier</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.5; }
+  .chart-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px; }
+  .annotation-box {
+    background: #f0f4ff; border-left: 3px solid #2980b9; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #2c3e50; }
+  .legend { margin-top: 16px; display: flex; gap: 20px; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 16px; height: 16px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Q2 Content Calendar: Funnel Stage Distribution by Priority Tier</h1>
+  <p class="subtitle">How articles are distributed across funnel stages within each priority tier. Each bar represents one tier, with segments showing the count of articles assigned to each funnel stage.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, Segoe UI, sans-serif">
+      <rect width="700" height="420" fill="#ffffff"/>
+
+      <!-- Colors: TOFU=#90caf9, MOFU=#26a69a, BOFU=#1a237e, MOFU/BOFU=#5c6bc0 -->
+
+      <!-- Y-axis grid and labels -->
+      <line x1="100" y1="360" x2="600" y2="360" stroke="#ddd" stroke-width="1"/>
+      <line x1="100" y1="300" x2="600" y2="300" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="100" y1="240" x2="600" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="100" y1="180" x2="600" y2="180" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="100" y1="120" x2="600" y2="120" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="100" y1="60" x2="600" y2="60" stroke="#f0f0f0" stroke-width="1"/>
+      <text x="90" y="364" text-anchor="end" font-size="11" fill="#888">0</text>
+      <text x="90" y="300" text-anchor="end" font-size="11" fill="#888">5</text>
+      <text x="90" y="240" text-anchor="end" font-size="11" fill="#888">10</text>
+      <text x="90" y="180" text-anchor="end" font-size="11" fill="#888">15</text>
+      <text x="90" y="120" text-anchor="end" font-size="11" fill="#888">20</text>
+      <text x="90" y="60" text-anchor="end" font-size="11" fill="#888">25</text>
+      <text x="30" y="210" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90,30,210)">Article Count</text>
+
+      <!-- Scale: 12px per article, baseline at y=360 -->
+
+      <!-- TIER 1: total=24, x center=210, bar width=120 -->
+      <!-- TOFU: 4 articles, h=48, y=312 to 360 -->
+      <rect x="150" y="312" width="120" height="48" rx="0" fill="#90caf9" opacity="0.85">
+        <title>Tier 1 TOFU: 4 articles</title>
+      </rect>
+      <text x="210" y="340" text-anchor="middle" font-size="13" fill="#1a237e" font-weight="600" dominant-baseline="middle">4</text>
+
+      <!-- MOFU: 10 articles, h=120, y=192 to 312 -->
+      <rect x="150" y="192" width="120" height="120" rx="0" fill="#26a69a" opacity="0.85">
+        <title>Tier 1 MOFU: 10 articles</title>
+      </rect>
+      <text x="210" y="252" text-anchor="middle" font-size="13" fill="#fff" font-weight="600" dominant-baseline="middle">10</text>
+
+      <!-- BOFU: 8 articles, h=96, y=96 to 192 -->
+      <rect x="150" y="96" width="120" height="96" rx="0" fill="#1a237e" opacity="0.85">
+        <title>Tier 1 BOFU: 8 articles</title>
+      </rect>
+      <text x="210" y="144" text-anchor="middle" font-size="13" fill="#fff" font-weight="600" dominant-baseline="middle">8</text>
+
+      <!-- MOFU/BOFU: 2 articles, h=24, y=72 to 96 -->
+      <rect x="150" y="72" width="120" height="24" rx="0" fill="#5c6bc0" opacity="0.85">
+        <title>Tier 1 MOFU/BOFU: 2 articles</title>
+      </rect>
+      <text x="210" y="84" text-anchor="middle" font-size="11" fill="#fff" font-weight="600" dominant-baseline="middle">2</text>
+
+      <!-- Total label -->
+      <text x="210" y="62" text-anchor="middle" font-size="12" fill="#333" font-weight="700">24</text>
+
+      <!-- Tier label -->
+      <text x="210" y="385" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">Tier 1</text>
+      <text x="210" y="400" text-anchor="middle" font-size="11" fill="#888">Anchor Topics</text>
+
+      <!-- TIER 2: total=19, x center=380 -->
+      <!-- TOFU: 4 articles, h=48, y=312 to 360 -->
+      <rect x="320" y="312" width="120" height="48" rx="0" fill="#90caf9" opacity="0.85">
+        <title>Tier 2 TOFU: 4 articles</title>
+      </rect>
+      <text x="380" y="340" text-anchor="middle" font-size="13" fill="#1a237e" font-weight="600" dominant-baseline="middle">4</text>
+
+      <!-- MOFU: 10 articles, h=120, y=192 to 312 -->
+      <rect x="320" y="192" width="120" height="120" rx="0" fill="#26a69a" opacity="0.85">
+        <title>Tier 2 MOFU: 10 articles</title>
+      </rect>
+      <text x="380" y="252" text-anchor="middle" font-size="13" fill="#fff" font-weight="600" dominant-baseline="middle">10</text>
+
+      <!-- BOFU: 3 articles, h=36, y=156 to 192 -->
+      <rect x="320" y="156" width="120" height="36" rx="0" fill="#1a237e" opacity="0.85">
+        <title>Tier 2 BOFU: 3 articles</title>
+      </rect>
+      <text x="380" y="174" text-anchor="middle" font-size="13" fill="#fff" font-weight="600" dominant-baseline="middle">3</text>
+
+      <!-- MOFU/BOFU: 2 articles, h=24, y=132 to 156 -->
+      <rect x="320" y="132" width="120" height="24" rx="0" fill="#5c6bc0" opacity="0.85">
+        <title>Tier 2 MOFU/BOFU: 2 articles</title>
+      </rect>
+      <text x="380" y="144" text-anchor="middle" font-size="11" fill="#fff" font-weight="600" dominant-baseline="middle">2</text>
+
+      <!-- Total label -->
+      <text x="380" y="122" text-anchor="middle" font-size="12" fill="#333" font-weight="700">19</text>
+
+      <!-- Tier label -->
+      <text x="380" y="385" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">Tier 2</text>
+      <text x="380" y="400" text-anchor="middle" font-size="11" fill="#888">Opportunity Topics</text>
+
+      <!-- TIER 3: total=9, x center=550 -->
+      <!-- TOFU: 2 articles, h=24, y=336 to 360 -->
+      <rect x="490" y="336" width="120" height="24" rx="0" fill="#90caf9" opacity="0.85">
+        <title>Tier 3 TOFU: 2 articles</title>
+      </rect>
+      <text x="550" y="348" text-anchor="middle" font-size="11" fill="#1a237e" font-weight="600" dominant-baseline="middle">2</text>
+
+      <!-- MOFU: 2 articles, h=24, y=312 to 336 -->
+      <rect x="490" y="312" width="120" height="24" rx="0" fill="#26a69a" opacity="0.85">
+        <title>Tier 3 MOFU: 2 articles</title>
+      </rect>
+      <text x="550" y="324" text-anchor="middle" font-size="11" fill="#fff" font-weight="600" dominant-baseline="middle">2</text>
+
+      <!-- BOFU: 3 articles, h=36, y=276 to 312 -->
+      <rect x="490" y="276" width="120" height="36" rx="0" fill="#1a237e" opacity="0.85">
+        <title>Tier 3 BOFU: 3 articles</title>
+      </rect>
+      <text x="550" y="294" text-anchor="middle" font-size="13" fill="#fff" font-weight="600" dominant-baseline="middle">3</text>
+
+      <!-- MOFU/BOFU: 2 articles, h=24, y=252 to 276 -->
+      <rect x="490" y="252" width="120" height="24" rx="0" fill="#5c6bc0" opacity="0.85">
+        <title>Tier 3 MOFU/BOFU: 2 articles</title>
+      </rect>
+      <text x="550" y="264" text-anchor="middle" font-size="11" fill="#fff" font-weight="600" dominant-baseline="middle">2</text>
+
+      <!-- Total label -->
+      <text x="550" y="242" text-anchor="middle" font-size="12" fill="#333" font-weight="700">9</text>
+
+      <!-- Tier label -->
+      <text x="550" y="385" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">Tier 3</text>
+      <text x="550" y="400" text-anchor="middle" font-size="11" fill="#888">Reinforcement</text>
+    </svg>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#90caf9"></div>TOFU (Problem Articulation)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#26a69a"></div>MOFU (Education & Criteria)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#1a237e"></div>BOFU (Evaluation & Decision)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#5c6bc0"></div>MOFU/BOFU (Bridge)</div>
+  </div>
+  <div class="annotation-box">
+    <strong>Key insight:</strong> Every Tier 1 topic has coverage at multiple funnel stages, ensuring no topic is served by a single content type at a single stage of the reader's journey. MOFU is the largest segment across all tiers, reflecting the Q2 plan's emphasis on education and criteria-setting content. BOFU articles are concentrated in Tier 1 and Tier 3, where comparison and evaluation content addresses the largest identified content gaps (particularly in CMMS and condition monitoring). The MOFU/BOFU bridge articles in each tier connect educational blog content to solution-oriented site sections.
+  </div>
+</div>
+</body>
+</html>

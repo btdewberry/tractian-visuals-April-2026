@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Query Cluster Bubble Chart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 1140px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.5; }
+  .chart-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; }
+  .chart-wrap svg { width: 100%; height: auto; }
+  .annotation-box {
+    background: #f0f4ff; border-left: 3px solid #2980b9; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #2c3e50; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Query Cluster Landscape: Where Search Demand Is Growing and Where the Blog Is Capturing It</h1>
+  <p class="subtitle">Each bubble represents a topical query cluster. Position shows Q1-over-Q4 change in aggregate clicks (x-axis) and impressions (y-axis). Bubble size represents total 12-month impression volume, not just the change. The upper-right quadrant is the ideal zone (both growing). The CMMS bubble (red outline) highlights the largest capture gap.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, Segoe UI, sans-serif">
+<rect width="1000" height="620" fill="#ffffff"/>
+<line x1="148.5" y1="20" x2="148.5" y2="560" stroke="#eee" stroke-width="1"/>
+<line x1="460.0" y1="20" x2="460.0" y2="560" stroke="#eee" stroke-width="1"/>
+<line x1="771.5" y1="20" x2="771.5" y2="560" stroke="#eee" stroke-width="1"/>
+<line x1="80" y1="539.1" x2="840" y2="539.1" stroke="#eee" stroke-width="1"/>
+<line x1="80" y1="412.5" x2="840" y2="412.5" stroke="#eee" stroke-width="1"/>
+<line x1="80" y1="285.8" x2="840" y2="285.8" stroke="#eee" stroke-width="1"/>
+<line x1="80" y1="159.2" x2="840" y2="159.2" stroke="#eee" stroke-width="1"/>
+<line x1="80" y1="32.6" x2="840" y2="32.6" stroke="#eee" stroke-width="1"/>
+<line x1="148.5" y1="20" x2="148.5" y2="560" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="80" y1="539.1" x2="840" y2="539.1" stroke="#aaa" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="148.5" y="578" text-anchor="middle" font-size="11" fill="#666">0</text>
+<text x="460.0" y="578" text-anchor="middle" font-size="11" fill="#666">50</text>
+<text x="771.5" y="578" text-anchor="middle" font-size="11" fill="#666">100</text>
+<text x="70" y="539.1" text-anchor="end" font-size="11" fill="#666" dominant-baseline="middle">0</text>
+<text x="70" y="412.5" text-anchor="end" font-size="11" fill="#666" dominant-baseline="middle">100,000</text>
+<text x="70" y="285.8" text-anchor="end" font-size="11" fill="#666" dominant-baseline="middle">200,000</text>
+<text x="70" y="159.2" text-anchor="end" font-size="11" fill="#666" dominant-baseline="middle">300,000</text>
+<text x="70" y="32.6" text-anchor="end" font-size="11" fill="#666" dominant-baseline="middle">400,000</text>
+<text x="460.0" y="612" text-anchor="middle" font-size="12" fill="#444">Aggregate Click Change (Q1 over Q4)</text>
+<text x="16" y="290.0" text-anchor="middle" font-size="12" fill="#444" transform="rotate(-90,16,290.0)">Aggregate Impression Change (Q1 over Q4)</text>
+<circle cx="341.6" cy="513.7" r="55.0" fill="#16a085" opacity="0.35" stroke="#16a085" stroke-width="1.2"><title>Vibration & Sensors
+12-month impressions: 350,645
+Click change: 31
+Impression change: 20,082</title></circle>
+<text x="351.6" y="518.7" text-anchor="start" font-size="10" fill="#333" font-weight="500">Vibration & Sensors</text>
+<circle cx="291.8" cy="490.5" r="49.0" fill="#2980b9" opacity="0.35" stroke="#2980b9" stroke-width="1.2"><title>Maintenance Types & Strategy
+12-month impressions: 300,722
+Click change: 23
+Impression change: 38,394</title></circle>
+<text x="301.8" y="482.5" text-anchor="start" font-size="9" fill="#333" font-weight="500">Maintenance Types & Strategy</text>
+<circle cx="746.6" cy="58.0" r="35.3" fill="#8e44ad" opacity="0.35" stroke="#8e44ad" stroke-width="1.2"><title>Root Cause & Quality Analysis
+12-month impressions: 187,319
+Click change: 96
+Impression change: 379,926</title></circle>
+<text x="756.6" y="48.0" text-anchor="start" font-size="9" fill="#333" font-weight="500">Root Cause & Quality Analysis</text>
+<circle cx="410.2" cy="477.8" r="34.1" fill="#d35400" opacity="0.35" stroke="#d35400" stroke-width="1.2"><title>Asset & Inventory Management
+12-month impressions: 177,493
+Click change: 42
+Impression change: 48,448</title></circle>
+<text x="420.2" y="467.8" text-anchor="start" font-size="9" fill="#333" font-weight="500">Asset & Inventory Management</text>
+<circle cx="242.0" cy="500.7" r="31.5" fill="#e74c3c" opacity="0.35" stroke="#c0392b" stroke-width="2.5"><title>CMMS & Software
+12-month impressions: 155,776
+Click change: 15
+Impression change: 30,308</title></circle>
+<text x="254.0" y="505.7" text-anchor="start" font-size="10" fill="#333" font-weight="500">CMMS & Software</text>
+<circle cx="453.8" cy="484.5" r="29.9" fill="#2c3e50" opacity="0.35" stroke="#2c3e50" stroke-width="1.2"><title>SOP & Operations
+12-month impressions: 142,249
+Click change: 49
+Impression change: 43,114</title></circle>
+<text x="463.8" y="492.5" text-anchor="start" font-size="10" fill="#333" font-weight="500">SOP & Operations</text>
+<circle cx="329.2" cy="487.4" r="22.9" fill="#1abc9c" opacity="0.35" stroke="#1abc9c" stroke-width="1.2"><title>Glossary-Aligned Terms
+12-month impressions: 84,595
+Click change: 29
+Impression change: 40,841</title></circle>
+<text x="339.2" y="492.4" text-anchor="start" font-size="10" fill="#333" font-weight="500">Glossary-Aligned Terms</text>
+<circle cx="372.8" cy="515.8" r="21.8" fill="#f39c12" opacity="0.35" stroke="#f39c12" stroke-width="1.2"><title>Maintenance KPIs & Metrics
+12-month impressions: 75,185
+Click change: 36
+Impression change: 18,437</title></circle>
+<text x="382.8" y="509.8" text-anchor="start" font-size="9" fill="#333" font-weight="500">Maintenance KPIs & Metrics</text>
+<circle cx="217.0" cy="534.7" r="21.0" fill="#27ae60" opacity="0.35" stroke="#27ae60" stroke-width="1.2"><title>Maintenance Planning & Scheduling
+12-month impressions: 69,138
+Click change: 11
+Impression change: 3,497</title></circle>
+<text x="227.0" y="544.7" text-anchor="start" font-size="9" fill="#333" font-weight="500">Maintenance Planning & Scheduling</text>
+<circle cx="142.3" cy="522.5" r="18.5" fill="#7f8c8d" opacity="0.35" stroke="#7f8c8d" stroke-width="1.2"><title>ROI & Financial
+12-month impressions: 48,085
+Click change: -1
+Impression change: 13,118</title></circle>
+<text x="150.3" y="534.5" text-anchor="start" font-size="10" fill="#333" font-weight="500">ROI & Financial</text>
+<circle cx="198.4" cy="533.3" r="14.0" fill="#95a5a6" opacity="0.35" stroke="#95a5a6" stroke-width="1.2"><title>Downtime & Reliability
+12-month impressions: 10,884
+Click change: 8
+Impression change: 4,578</title></circle>
+<text x="206.4" y="523.3" text-anchor="start" font-size="10" fill="#333" font-weight="500">Downtime & Reliability</text>
+</svg>
+  </div>
+  <div class="annotation-box">
+    <strong>Key insight:</strong> Root Cause and Quality Analysis dominates impression growth (+379,926) but its click capture (+96) is disproportionately small, largely due to AI Overview displacement on head terms. CMMS and Software shows moderate impression growth with minimal click conversion, confirming the content gap identified in both the pages and queries analysis. Clusters in the upper-right with balanced growth (Asset Management, SOP, Glossary-Aligned) represent the healthiest expansion candidates.
+  </div>
+</div>
+</body>
+</html>

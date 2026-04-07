@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convergence Matrix</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.5; }
+  .table-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: #2c3e50; color: #fff; padding: 12px 14px; text-align: left;
+    font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.45; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f8f9fa; }
+
+  /* Tier accent borders */
+  tr.tier1 td:first-child { border-left: 4px solid #27ae60; }
+  tr.tier2 td:first-child { border-left: 4px solid #f39c12; }
+  tr.tier3 td:first-child { border-left: 4px solid #95a5a6; }
+  tr.tier-s td:first-child { border-left: 4px solid #2980b9; }
+
+  /* Signal cells */
+  .sig-strong { background: #e8f5e9; color: #2e7d32; }
+  .sig-moderate { background: #fff8e1; color: #f57f17; }
+  .sig-weak { background: #fce4ec; color: #c62828; }
+  .sig-mixed { background: #fff3e0; color: #e65100; }
+
+  /* Convergence cells */
+  .conv-strong { background: #e8f5e9; color: #2e7d32; font-weight: 600; }
+  .conv-moderate { background: #fff8e1; color: #f57f17; }
+  .conv-mixed { background: #fff3e0; color: #e65100; }
+
+  /* Trajectory cells */
+  .traj-emerging { background: #e3f2fd; color: #1565c0; }
+  .traj-durable { background: #f1f8e9; color: #558b2f; }
+  .traj-risk { background: #fce4ec; color: #c62828; }
+  .traj-growing { background: #e8f5e9; color: #2e7d32; }
+  .traj-explosive { background: #e1f5fe; color: #0277bd; font-weight: 600; }
+
+  /* Tier cells */
+  .tier-1 { font-weight: 700; color: #2e7d32; }
+  .tier-2 { font-weight: 600; color: #f57f17; }
+  .tier-3 { color: #757575; }
+  .tier-structural { font-weight: 600; color: #1565c0; font-style: italic; }
+
+  .footnote {
+    background: #f0f4ff; border-left: 3px solid #2980b9; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .footnote strong { color: #2c3e50; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Convergence Matrix: Where Pages Data and Queries Data Independently Confirm the Same Signal</h1>
+  <p class="subtitle">Each row is a topical area evaluated independently through both the page-level and query-level GSC analysis. "Strong convergence" means both datasets pointed to the same conclusion without cross-referencing. Tier assignments reflect the combined confidence level for Q2 2026 content prioritization.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Topical Area</th>
+          <th>Pages Signal</th>
+          <th>Queries Signal</th>
+          <th>Convergence</th>
+          <th>Trajectory</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tier1">
+          <td>Condition Monitoring & Sensors</td>
+          <td class="sig-strong">Strong</td>
+          <td class="sig-strong">Strong</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-emerging">Emerging / Accelerating</td>
+          <td class="tier-1">1</td>
+        </tr>
+        <tr class="tier1">
+          <td>CMMS & Maintenance Software</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="sig-mixed">Strong demand, Weak capture</td>
+          <td class="conv-mixed">Strong (query-strong, page-weak)</td>
+          <td class="traj-growing">Growing demand, poor capture</td>
+          <td class="tier-1">1</td>
+        </tr>
+        <tr class="tier1">
+          <td>Maintenance KPIs & Metrics</td>
+          <td class="sig-strong">Strong</td>
+          <td class="sig-strong">Strong</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-emerging">Emerging / Accelerating</td>
+          <td class="tier-1">1</td>
+        </tr>
+        <tr class="tier1">
+          <td>Predictive Maintenance</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-emerging">Emerging</td>
+          <td class="tier-1">1</td>
+        </tr>
+        <tr class="tier2">
+          <td>Root Cause & Quality Analysis</td>
+          <td class="sig-mixed">Strong visibility, Weak capture</td>
+          <td class="sig-strong">Strong</td>
+          <td class="conv-mixed">Strong (requires adaptation)</td>
+          <td class="traj-risk">Surging, zero-click risk</td>
+          <td class="tier-2">2</td>
+        </tr>
+        <tr class="tier2">
+          <td>SOP & Operational Procedures</td>
+          <td class="sig-strong">Strong</td>
+          <td class="sig-strong">Strong</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-durable">Durable</td>
+          <td class="tier-2">2</td>
+        </tr>
+        <tr class="tier2">
+          <td>Asset Management & Inventory</td>
+          <td class="sig-strong">Strong</td>
+          <td class="sig-strong">Strong</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-durable">Durable</td>
+          <td class="tier-2">2</td>
+        </tr>
+        <tr class="tier2">
+          <td>OEE & Equipment Effectiveness</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="conv-moderate">Strong page, Moderate query</td>
+          <td class="traj-emerging">Emerging / Growing</td>
+          <td class="tier-2">2</td>
+        </tr>
+        <tr class="tier2">
+          <td>Preventive Maintenance</td>
+          <td class="sig-mixed">Moderate, improving rapidly</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-emerging">Emerging</td>
+          <td class="tier-2">2</td>
+        </tr>
+        <tr class="tier3">
+          <td>Work Orders</td>
+          <td class="sig-strong">Strong</td>
+          <td class="sig-moderate">Moderate</td>
+          <td class="conv-moderate">Page-strong, Query-moderate</td>
+          <td class="traj-durable">Durable</td>
+          <td class="tier-3">3</td>
+        </tr>
+        <tr class="tier3">
+          <td>Downtime Reduction</td>
+          <td class="sig-mixed">Moderate-Strong</td>
+          <td class="sig-weak">Weak</td>
+          <td class="conv-mixed">Page-strong, Query-weak</td>
+          <td class="traj-growing">Growing / Emerging</td>
+          <td class="tier-3">3</td>
+        </tr>
+        <tr class="tier-s">
+          <td>Glossary Integration</td>
+          <td class="sig-strong">Strong (newer)</td>
+          <td class="sig-strong">Strong (for age)</td>
+          <td class="conv-strong">Strong</td>
+          <td class="traj-explosive">Explosive emergence</td>
+          <td class="tier-structural">Structural</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footnote">
+    <strong>How to read this matrix:</strong> "Strong convergence" means the pages analysis and the queries analysis independently surfaced the same topical area as a priority, without one informing the other. This is the highest-confidence signal available in the GSC data. Tier 1 topics anchor the Q2 content plan. Tier 2 topics receive dedicated coverage. Tier 3 topics get supporting or reinforcement content. "Structural" indicates a cross-cutting integration priority rather than a standalone content topic.
+  </div>
+</div>
+</body>
+</html>

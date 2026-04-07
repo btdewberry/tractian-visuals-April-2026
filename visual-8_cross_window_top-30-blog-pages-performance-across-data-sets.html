@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Window Trajectory Heatmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 4px; line-height: 1.5; }
+  .sub2 { font-size: 13px; color: #777; margin-bottom: 24px; }
+  .table-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th {
+    background: #2c3e50; color: #fff; padding: 10px 12px; text-align: left;
+    font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px;
+    position: sticky; top: 0;
+  }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+  tbody tr:hover { background: #f8f9fa; }
+  td.slug { font-size: 11.5px; color: #333; max-width: 320px; word-break: break-all; }
+  td.clicks { text-align: right; color: #555; font-variant-numeric: tabular-nums; }
+
+  /* Section headers */
+  tr.section-header td {
+    background: #f5f6f7; font-weight: 700; font-size: 12px; color: #2c3e50;
+    padding: 6px 12px; border-bottom: 2px solid #ddd; letter-spacing: 0.3px;
+  }
+
+  /* 12-month cells */
+  .c-strong { background: #e8f5e9; color: #2e7d32; font-weight: 600; text-align: center; }
+  .c-moderate { background: #fff8e1; color: #f57f17; text-align: center; }
+  .c-weak { background: #fce4ec; color: #c62828; text-align: center; }
+
+  /* Change cells */
+  .c-growing { background: #e8f5e9; color: #2e7d32; font-weight: 500; text-align: center; }
+  .c-mixed { background: #fff3e0; color: #e65100; text-align: center; }
+  .c-declining { background: #fce4ec; color: #c62828; text-align: center; }
+
+  /* Trajectory cells */
+  .t-durable { background: #c8e6c9; color: #1b5e20; font-weight: 700; text-align: center; }
+  .t-emerging { background: #b3e5fc; color: #01579b; font-weight: 700; text-align: center; }
+  .t-softening { background: #fff9c4; color: #f57f17; font-weight: 600; text-align: center; }
+  .t-refresh { background: #f3e5f5; color: #7b1fa2; font-weight: 700; text-align: center; }
+  .t-stable { background: #eceff1; color: #546e7a; text-align: center; }
+
+  .annotation-box {
+    background: #f3e5f5; border-left: 3px solid #7b1fa2; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #4a148c; }
+
+  .legend { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid #ddd; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Cross-Window Trajectory: How the Top 30 Blog Pages Are Performing Across Three Time Horizons</h1>
+  <p class="subtitle">12-month baseline, Q1 2026 vs Q4 2025, and the most recent 28-day comparison.</p>
+  <p class="sub2">Pages are grouped by trajectory classification. The 12-Month column reflects absolute performance (top quartile = Strong). The Q1/Q4 and L28/P28 columns reflect directional change (clicks and impressions both rising = Growing, both falling = Declining, split = Mixed).</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>12-Mo Clicks</th>
+          <th>12-Month</th>
+          <th>Q1 / Q4</th>
+          <th>Last 28 / Prev 28</th>
+          <th>Trajectory</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-header"><td colspan="6">Emerging</td></tr>
+<tr>
+  <td class="slug">whats-abc-inventory-analysis-how-to-calculate-examples</td>
+  <td class="clicks">785</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-growing">Growing</td>
+  <td class="t-emerging">Emerging</td>
+</tr>
+<tr class="section-header"><td colspan="6">Softening</td></tr>
+<tr>
+  <td class="slug">maintenance-schedule...guide-with-free-excel-template</td>
+  <td class="clicks">3,218</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-softening">Softening</td>
+</tr>
+<tr>
+  <td class="slug">tractian-raises-series-c...downtime-worldwide</td>
+  <td class="clicks">1,948</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-softening">Softening</td>
+</tr>
+<tr>
+  <td class="slug">8-essential-indicators-for-maintenance-management</td>
+  <td class="clicks">1,870</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-softening">Softening</td>
+</tr>
+<tr>
+  <td class="slug">dfmea-vs-pfmea</td>
+  <td class="clicks">1,453</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-softening">Softening</td>
+</tr>
+<tr class="section-header"><td colspan="6">Needs Refresh</td></tr>
+<tr>
+  <td class="slug">vibration-analysis-complete-guide</td>
+  <td class="clicks">2,770</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">types-of-maintenance</td>
+  <td class="clicks">2,681</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">ram-analysis-the-complete-guide-2021</td>
+  <td class="clicks">2,084</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">roi-and-payback-maintenance-kpis</td>
+  <td class="clicks">1,433</td>
+  <td class="c-strong">Strong</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">spare-parts-management</td>
+  <td class="clicks">1,430</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">jit-just-in-time-management</td>
+  <td class="clicks">1,264</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">learn-all-about-the-matrix-of-criticality</td>
+  <td class="clicks">772</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">induction-motors-revolutionizing-the-industry</td>
+  <td class="clicks">703</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">rcm...most-profitable-maintenance-models</td>
+  <td class="clicks">546</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr>
+  <td class="slug">maintenance-planning-and-control...guide-2022</td>
+  <td class="clicks">339</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-refresh">Needs Refresh</td>
+</tr>
+<tr class="section-header"><td colspan="6">Stable</td></tr>
+<tr>
+  <td class="slug">standard-operating-procedure-sop...guide</td>
+  <td class="clicks">1,028</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">how-to-create-a-maintenance-plan</td>
+  <td class="clicks">809</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">scrap-rate-calculate-minimize</td>
+  <td class="clicks">733</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">maintenance-tools-list</td>
+  <td class="clicks">509</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">production-planning-control-ppc</td>
+  <td class="clicks">491</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">fms-facility-management-system...key-benefits</td>
+  <td class="clicks">484</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">energy-efficiency-industry-strategies</td>
+  <td class="clicks">434</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">work-order-vs-purchase-order...explained</td>
+  <td class="clicks">421</td>
+  <td class="c-moderate">Moderate</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">maintenance-vs-repair</td>
+  <td class="clicks">383</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-declining">Declining</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">inventory-turnover-ratio...how-to-calculate</td>
+  <td class="clicks">363</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">replacement-asset-value-rav-what-is-it</td>
+  <td class="clicks">352</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">authors/igor-marinelli</td>
+  <td class="clicks">351</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">complete-guide-to-implement-cmms-successfully</td>
+  <td class="clicks">348</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">work-order-maintenance-complete-guide</td>
+  <td class="clicks">341</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-declining">Declining</td>
+  <td class="t-stable">Stable</td>
+</tr>
+<tr>
+  <td class="slug">mechanical-failures-prevention</td>
+  <td class="clicks">340</td>
+  <td class="c-weak">Weak</td>
+  <td class="c-growing">Growing</td>
+  <td class="c-mixed">Mixed</td>
+  <td class="t-stable">Stable</td>
+</tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#e8f5e9"></div>Strong / Growing</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#fff8e1"></div>Moderate</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#fff3e0"></div>Mixed</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#fce4ec"></div>Weak / Declining</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#b3e5fc"></div>Emerging</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#fff9c4"></div>Softening</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#f3e5f5"></div>Needs Refresh</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#eceff1"></div>Stable</div>
+  </div>
+  <div class="annotation-box">
+    <strong>Key insight:</strong> Pages classified as "Needs Refresh" show growing search demand (impressions rising in Q1/Q4) but failing click capture (clicks flat or falling). Ten of the top 30 pages fall into this category, including three of the top four by 12-month clicks (vibration-analysis, types-of-maintenance, ram-analysis). These are the highest-priority candidates for title, meta description, and content updates. The only "Emerging" page in the top 30 is the ABC inventory analysis page, which is growing on both metrics in both recent windows. Four pages are "Softening," meaning they were strong historically but are losing momentum in the most recent data.
+  </div>
+</div>
+</body>
+</html>

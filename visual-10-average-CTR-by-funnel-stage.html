@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTR by Funnel Stage</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 40px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+  .subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.5; }
+  .chart-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; }
+  .chart-wrap svg { width: 100%; height: auto; }
+  .annotation-box {
+    background: #f0f4ff; border-left: 3px solid #2980b9; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #2c3e50; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Click-Through Rate by Funnel Stage: How Content Type Affects Search Performance</h1>
+  <p class="subtitle">Average CTR of existing blog pages classified by funnel stage, using 12-month GSC data. Pages with fewer than 100 impressions are excluded. Red diamonds show average clicks per page at each stage.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, Segoe UI, sans-serif">
+<rect width="700" height="420" fill="#ffffff"/>
+<line x1="70" y1="350.0" x2="630" y2="350.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="62" y="350.0" text-anchor="end" font-size="11" fill="#888" dominant-baseline="middle">0.0%</text>
+<line x1="70" y1="270.0" x2="630" y2="270.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="62" y="270.0" text-anchor="end" font-size="11" fill="#888" dominant-baseline="middle">0.1%</text>
+<line x1="70" y1="190.0" x2="630" y2="190.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="62" y="190.0" text-anchor="end" font-size="11" fill="#888" dominant-baseline="middle">0.2%</text>
+<line x1="70" y1="110.0" x2="630" y2="110.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="62" y="110.0" text-anchor="end" font-size="11" fill="#888" dominant-baseline="middle">0.3%</text>
+<line x1="70" y1="30.0" x2="630" y2="30.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="62" y="30.0" text-anchor="end" font-size="11" fill="#888" dominant-baseline="middle">0.4%</text>
+<text x="18" y="190.0" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90,18,190.0)">Average CTR</text>
+<rect x="135.0" y="238.0" width="100" height="112.0" rx="4" fill="#90caf9" opacity="0.8"><title>TOFU
+Avg CTR: 0.14%
+Pages: 32
+Avg clicks/page: 149.5
+Total impressions: 3,238,587</title></rect>
+<text x="185.0" y="230.0" text-anchor="middle" font-size="14" fill="#90caf9" font-weight="700">0.14%</text>
+<polygon points="185.0,206.31428571428572 192.0,213.31428571428572 185.0,220.31428571428572 178.0,213.31428571428572" fill="#e74c3c" opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+<text x="197.0" y="214.31428571428572" font-size="10" fill="#c0392b" font-weight="600" dominant-baseline="middle">150 avg clicks</text>
+<text x="185.0" y="368" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">TOFU</text>
+<text x="185.0" y="383" text-anchor="middle" font-size="10" fill="#888">32 pages</text>
+<text x="185.0" y="396" text-anchor="middle" font-size="10" fill="#888">3.2M imps</text>
+<rect x="300.0" y="54.0" width="100" height="296.0" rx="4" fill="#26a69a" opacity="0.8"><title>MOFU
+Avg CTR: 0.37%
+Pages: 94
+Avg clicks/page: 230.8
+Total impressions: 6,094,584</title></rect>
+<text x="350.0" y="46.0" text-anchor="middle" font-size="14" fill="#26a69a" font-weight="700">0.37%</text>
+<polygon points="350.0,131.9828571428571 357.0,138.9828571428571 350.0,145.9828571428571 343.0,138.9828571428571" fill="#e74c3c" opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+<text x="362.0" y="139.9828571428571" font-size="10" fill="#c0392b" font-weight="600" dominant-baseline="middle">231 avg clicks</text>
+<text x="350.0" y="368" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">MOFU</text>
+<text x="350.0" y="383" text-anchor="middle" font-size="10" fill="#888">94 pages</text>
+<text x="350.0" y="396" text-anchor="middle" font-size="10" fill="#888">6.1M imps</text>
+<rect x="465.0" y="198.0" width="100" height="152.0" rx="4" fill="#1a237e" opacity="0.8"><title>BOFU
+Avg CTR: 0.19%
+Pages: 76
+Avg clicks/page: 67.6
+Total impressions: 3,357,003</title></rect>
+<text x="515.0" y="190.0" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="700">0.19%</text>
+<polygon points="515.0,281.1942857142857 522.0,288.1942857142857 515.0,295.1942857142857 508.0,288.1942857142857" fill="#e74c3c" opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+<text x="527.0" y="289.1942857142857" font-size="10" fill="#c0392b" font-weight="600" dominant-baseline="middle">68 avg clicks</text>
+<text x="515.0" y="368" text-anchor="middle" font-size="14" fill="#1a1a2e" font-weight="700">BOFU</text>
+<text x="515.0" y="383" text-anchor="middle" font-size="10" fill="#888">76 pages</text>
+<text x="515.0" y="396" text-anchor="middle" font-size="10" fill="#888">3.4M imps</text>
+<polygon points="80,9 85,14 80,19 75,14" fill="#e74c3c" opacity="0.9"/>
+<text x="90" y="15" font-size="10" fill="#888" dominant-baseline="middle">Average clicks per page</text>
+</svg>
+  </div>
+  <div class="annotation-box">
+    <strong>Key insight:</strong> MOFU content (guides, templates, how-to articles, KPI frameworks) converts search visibility into clicks at 2.6 times the rate of TOFU definitional content. TOFU pages generate 3.2 million impressions across just 32 pages but achieve only 0.14% CTR, confirming that broad "what is" content is increasingly displaced by AI Overviews and zero-click answers. BOFU comparison and evaluation pages sit between the two at 0.19% CTR, reflecting the fact that many of these pages are newer and still establishing ranking authority. However, MOFU pages lead on both CTR and average clicks per page (231 vs. 150 for TOFU and 68 for BOFU), confirming that education and criteria-setting content is currently the strongest conversion engine in the blog. This performance pattern, combined with the BOFU content gap identified in the queries analysis, is why the Q2 plan invests heavily in both mid-funnel depth and bottom-of-funnel gap filling.
+  </div>
+</div>
+</body>
+</html>

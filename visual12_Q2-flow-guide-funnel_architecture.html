@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q2 Funnel Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a2e; padding: 30px 20px; }
+  .container { max-width: 1300px; margin: 0 auto; }
+  h1 { font-size: 21px; font-weight: 700; margin-bottom: 5px; color: #1a1a2e; }
+  .subtitle { font-size: 13px; color: #555; margin-bottom: 20px; line-height: 1.5; }
+  .diagram-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; overflow-x: auto; }
+  .diagram { display: flex; gap: 0; min-width: 1200px; position: relative; }
+
+  /* Funnel stage bands */
+  .stage-labels { display: flex; flex-direction: column; width: 80px; flex-shrink: 0; margin-right: 8px; }
+  .stage-label { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: 1px; border-radius: 6px 0 0 6px; }
+  .stage-tofu { background: #e3f2fd; color: #1565c0; height: 120px; }
+  .stage-mofu { background: #e0f2f1; color: #00695c; height: 220px; }
+  .stage-bofu { background: #e8eaf6; color: #283593; height: 200px; }
+
+  /* Topic columns */
+  .topics-area { display: flex; gap: 12px; flex: 1; }
+  .topic-col { flex: 1; min-width: 220px; display: flex; flex-direction: column; }
+  .topic-header { text-align: center; font-size: 12px; font-weight: 700; color: #1a1a2e; padding: 6px 4px; background: #f5f5f5; border-radius: 6px; margin-bottom: 8px; border: 1px solid #ddd; }
+  .topic-header .model-tag { display: block; font-size: 9px; font-weight: 400; color: #888; margin-top: 2px; font-style: italic; }
+
+  /* Funnel bands within each column */
+  .band { padding: 6px; border-radius: 4px; margin-bottom: 4px; }
+  .band-tofu { background: #e3f2fd; min-height: 110px; }
+  .band-mofu { background: #e0f2f1; min-height: 210px; }
+  .band-bofu { background: #e8eaf6; min-height: 190px; }
+
+  /* Article cards */
+  .card { background: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 6px 8px; margin-bottom: 4px; font-size: 10px; line-height: 1.35; color: #333; position: relative; }
+  .card .week { font-size: 9px; color: #999; font-weight: 500; }
+  .card .title { font-weight: 500; }
+  .card-tofu { border-left: 3px solid #90caf9; }
+  .card-mofu { border-left: 3px solid #26a69a; }
+  .card-bofu { border-left: 3px solid #1a237e; }
+  .card-bridge { border-left: 3px solid #5c6bc0; background: #f5f3ff; }
+
+  /* Side panels */
+  .side-panel { width: 90px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .side-box { background: #fff; border: 1.5px solid #bbb; border-radius: 6px; padding: 8px 6px; text-align: center; font-size: 10px; font-weight: 600; color: #555; }
+  .side-box.glossary { border-color: #1abc9c; color: #0d7a5f; }
+  .side-box.solutions { border-color: #5c6bc0; color: #3949ab; }
+  .side-box.calcs { border-color: #f39c12; color: #d68910; }
+  .side-box.competitors { border-color: #e74c3c; color: #c0392b; }
+
+  .arrow-label { font-size: 9px; color: #999; text-align: center; }
+
+  /* Connector arrows (CSS-based) */
+  .arrow-in { position: relative; }
+  .arrow-in::before { content: "→"; color: #1abc9c; font-size: 14px; position: absolute; left: -16px; top: 50%; transform: translateY(-50%); }
+  .arrow-out { position: relative; }
+  .arrow-out::after { content: "→"; color: #5c6bc0; font-size: 14px; position: absolute; right: -16px; top: 50%; transform: translateY(-50%); }
+
+  .annotation-box {
+    background: #f0f4ff; border-left: 3px solid #2980b9; padding: 12px 16px;
+    margin-top: 16px; font-size: 13px; color: #444; line-height: 1.5; border-radius: 0 6px 6px 0;
+  }
+  .annotation-box strong { color: #2c3e50; }
+  .footnote { margin-top: 10px; font-size: 11px; color: #888; line-height: 1.5; }
+
+  @media print {
+    body { padding: 10px; }
+    .diagram { min-width: unset; }
+    .topic-col { min-width: 160px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Q2 Funnel Architecture: How Each Tier 1 Topic Progresses Readers from Awareness to Decision</h1>
+  <p class="subtitle">The TOFU/MOFU/BOFU progression built for condition monitoring in Q1 now extends across every Tier 1 topic in the Q2 plan. Each column is a Tier 1 topic. Each row is a funnel stage. Cards show individual articles with their scheduled week.</p>
+
+  <div class="diagram-wrap">
+    <div style="display: flex; gap: 8px; min-width: 1200px;">
+
+      <!-- Left side panel: Glossary input -->
+      <div class="side-panel">
+        <div class="side-box glossary">/en/glossary</div>
+        <div class="arrow-label">Definitions feed into TOFU anchors →</div>
+      </div>
+
+      <!-- Stage labels -->
+      <div class="stage-labels">
+        <div class="stage-label stage-tofu">TOFU</div>
+        <div class="stage-label stage-mofu">MOFU</div>
+        <div class="stage-label stage-bofu">BOFU</div>
+      </div>
+
+      <!-- Topic columns -->
+      <div class="topics-area">
+
+        <!-- Column 1: Condition Monitoring -->
+        <div class="topic-col">
+          <div class="topic-header">Condition Monitoring & Sensors<span class="model-tag">Model established in Q1, extended in Q2</span></div>
+          <div class="band band-tofu">
+            <div class="card card-tofu"><span class="week">Wk 1</span><div class="title">Complete Guide to Condition Monitoring (Anchor)</div></div>
+          </div>
+          <div class="band band-mofu">
+            <div class="card card-mofu"><span class="week">Wk 2</span><div class="title">Vibration Monitoring: Types of Sensors and How to Choose</div></div>
+            <div class="card card-mofu"><span class="week">Wk 3</span><div class="title">Wireless Vibration Sensors: How They Work</div></div>
+            <div class="card card-mofu"><span class="week">Wk 5</span><div class="title">Condition Monitoring vs. Predictive Maintenance</div></div>
+            <div class="card card-mofu"><span class="week">Wk 10</span><div class="title">Bearing Vibration Analysis</div></div>
+            <div class="card card-mofu"><span class="week">Wk 11</span><div class="title">How Ultrasonic Sensors Work</div></div>
+          </div>
+          <div class="band band-bofu">
+            <div class="card card-bofu"><span class="week">Wk 5</span><div class="title">Best Vibration Monitoring Systems</div></div>
+            <div class="card card-bofu"><span class="week">Wk 7</span><div class="title">Best Condition Monitoring Software</div></div>
+            <div class="card card-bofu"><span class="week">Wk 10</span><div class="title">Vibration Monitoring Equipment</div></div>
+          </div>
+        </div>
+
+        <!-- Column 2: CMMS -->
+        <div class="topic-col">
+          <div class="topic-header">CMMS & Maintenance Management</div>
+          <div class="band band-tofu">
+            <div class="card card-tofu"><span class="week">Wk 7</span><div class="title">CMMS Implementation Guide (Anchor, straddles TOFU/MOFU)</div></div>
+          </div>
+          <div class="band band-mofu">
+            <div class="card card-mofu"><span class="week">Wk 2</span><div class="title">CMMS Software Comparison: Features, Pricing, Selection</div></div>
+            <div class="card card-mofu"><span class="week">Wk 11</span><div class="title">CMMS vs. EAM</div></div>
+          </div>
+          <div class="band band-bofu">
+            <div class="card card-bofu"><span class="week">Wk 1</span><div class="title">Best CMMS Software for Manufacturing</div></div>
+            <div class="card card-bofu"><span class="week">Wk 3</span><div class="title">Top CMMS Alternatives to SAP EAM</div></div>
+            <div class="card card-bofu"><span class="week">Wk 8</span><div class="title">CMMS for Oil and Gas</div></div>
+            <div class="card card-bofu"><span class="week">Wk 9</span><div class="title">Best Maintenance Management Software</div></div>
+            <div class="card card-bofu"><span class="week">Wk 13</span><div class="title">Best Spare Parts Inventory Mgmt Software</div></div>
+            <div class="card card-bridge"><span class="week">Bridge</span><div class="title">→ /en/solutions and /en/competitors</div></div>
+          </div>
+        </div>
+
+        <!-- Column 3: Maintenance KPIs -->
+        <div class="topic-col">
+          <div class="topic-header">Maintenance KPIs & Metrics</div>
+          <div class="band band-tofu">
+            <div class="card card-tofu"><span class="week">Wk 3</span><div class="title">Maintenance KPIs: Metrics Every Plant Manager Should Track (Anchor)</div></div>
+          </div>
+          <div class="band band-mofu">
+            <div class="card card-mofu"><span class="week">Wk 6</span><div class="title">How to Calculate and Improve OEE</div></div>
+            <div class="card card-mofu"><span class="week">Wk 9</span><div class="title">World-Class OEE Benchmarks</div></div>
+          </div>
+          <div class="band band-bofu">
+            <div class="card card-bridge"><span class="week">Wk 4</span><div class="title">How Maintenance KPIs Drive Operational Efficiency → /en/solutions, /en/maintenance-calculators</div></div>
+          </div>
+        </div>
+
+        <!-- Column 4: Predictive Maintenance -->
+        <div class="topic-col">
+          <div class="topic-header">Predictive Maintenance</div>
+          <div class="band band-tofu">
+            <div class="card card-tofu" style="opacity: 0.6;"><span class="week">Existing</span><div class="title">Anchor page (refreshed, not new)</div></div>
+          </div>
+          <div class="band band-mofu">
+            <div class="card card-mofu"><span class="week">Wk 7</span><div class="title">Top Predictive Maintenance Sensors</div></div>
+            <div class="card card-mofu"><span class="week">Wk 12</span><div class="title">Predictive Maintenance Analytics</div></div>
+          </div>
+          <div class="band band-bofu">
+            <div class="card card-bofu"><span class="week">Wk 4</span><div class="title">Predictive Maintenance Tools: A Buyer's Guide</div></div>
+            <div class="card card-bridge"><span class="week">Wk 8</span><div class="title">How PdM Software Reduces Downtime and Cost → /en/solutions</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right side panel: Output destinations -->
+      <div class="side-panel">
+        <div class="side-box solutions">/en/solutions</div>
+        <div class="side-box calcs">/en/maintenance-calculators</div>
+        <div class="side-box competitors">/en/competitors</div>
+        <div class="arrow-label">← Bridge articles connect to site sections</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="annotation-box">
+    <strong>Key insight:</strong> Every Tier 1 topic follows the same structural pattern: a TOFU anchor establishes the category framing, MOFU articles build education and evaluation criteria, and BOFU articles provide specific comparison and decision-support content. Bridge articles (purple cards) connect the blog to solution-oriented site sections, creating pathways from education to evaluation. The CMMS column is deliberately BOFU-heavy because the largest content gap identified in the analysis was in evaluation-stage CMMS content. The Condition Monitoring column carries the most MOFU depth because Q1 established the model and Q2 extends it with sensor-specific and technique-specific educational content. Glossary pages (left) feed definitions into TOFU anchors, while bridge articles (right) route readers toward /en/solutions, /en/competitors, and /en/maintenance-calculators.
+  </div>
+  <p class="footnote">Bridge articles (shown with purple left borders) link blog content to solution-oriented site sections, creating pathways from education to evaluation. The faded card in the Predictive Maintenance TOFU row indicates an existing anchor page that will be refreshed rather than replaced with new content.</p>
+</div>
+</body>
+</html>
